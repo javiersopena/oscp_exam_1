@@ -5,15 +5,16 @@ Maximum Potential Points: 40
 
 You have agreed with the client to perform an external black box penetration test against their Microsoft Windows Active Directory infrastructure.
 
-The final objective of the Active Directory penetration test is to gain Domain Administrator level rights on the network. The Active Directory Network can be
-located at the following IP addresses:
+The final objective of the Active Directory penetration test is to gain Domain Administrator level rights on the
+network. The Active Directory Network can be located at the following IP addresses:
 192.168.100.100
 192.168.100.101
 192.168.100.102
 
 Main Objectives:
 
-- Get Administrative interactive access to the MS01 client machine and obtain local.txt and proof.txt files in a valid way.
+- Get Administrative interactive access to the MS01 client machine and obtain local.txt and proof.txt 
+files in a valid way.
 - Get Administrative interactive access to the MS02 client machine and obtain local.txt and proof.txt files in a valid way.
 - Get Administrative interactive access to the Domain Controller and obtain the proof.txt file in a valid way.
 
@@ -51,6 +52,10 @@ Main Objectives:
 - Get interactive access to the machine and obtain proof.txt in a valid way.
 
 
-----------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
-In order to pass t
+To pass the exam, I need to score a minimum of 70 points.
+I have already 10 eligible points for having completed the PEN-200 course.
+So, there are two possible ways to pass it.
+- First, owning the three standalone machines would give me 20 x 3 + 10 = 70 points.
+- Second, owning the Active Directory Controller and one of the standalone machines would make 40 + 20 + 10 = 70 points.
