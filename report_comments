@@ -1,0 +1,56 @@
+192.168.100.100
+---------------
+
+Maximum Potential Points: 40
+
+You have agreed with the client to perform an external black box penetration test against their Microsoft Windows Active Directory infrastructure.
+
+The final objective of the Active Directory penetration test is to gain Domain Administrator level rights on the network. The Active Directory Network can be
+located at the following IP addresses:
+192.168.100.100
+192.168.100.101
+192.168.100.102
+
+Main Objectives:
+
+- Get Administrative interactive access to the MS01 client machine and obtain local.txt and proof.txt files in a valid way.
+- Get Administrative interactive access to the MS02 client machine and obtain local.txt and proof.txt files in a valid way.
+- Get Administrative interactive access to the Domain Controller and obtain the proof.txt file in a valid way.
+
+
+192.168.100.110
+---------------
+
+Maximun Potential Points: 20
+
+Main Objectives:
+
+- Get interactive access to the machine and obtain local.txt in a valid way.
+- Get interactive access to the machine and obtain proof.txt in a valid way.
+
+
+192.168.100.111
+---------------
+
+Maximun Potential Points: 20
+
+Main Objectives:
+
+- Get interactive access to the machine and obtain local.txt in a valid way.
+- Get interactive access to the machine and obtain proof.txt in a valid way.
+
+
+192.168.100.112
+---------------
+
+Maximun Potential Points: 20
+
+Main Objectives:
+
+- Get interactive access to the machine and obtain local.txt in a valid way.
+- Get interactive access to the machine and obtain proof.txt in a valid way.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+In order to pass t
